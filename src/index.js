@@ -28,9 +28,9 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Jiang Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Pizza name="Pizza Spinaci" imageSrc="pizzas/spinaci.jpg" />
+      <Pizza name="Pizza Margherita" imageSrc="pizzas/margherita.jpg" />
+      <Pizza name="Pizza Salamino" imageSrc="pizzas/salamino.jpg" />
     </main>
   );
 }
@@ -46,11 +46,11 @@ function Footer() {
     </footer>
   );
 }
-function Pizza() {
+function Pizza({ name, imageSrc }) {
   return (
     <>
-      <img src="pizzas/spinaci.jpg" alt="Pizza spinaci" />
-      <h3>Pizza Spinaci</h3>
+      <img src={imageSrc} alt={name} />
+      <h3>{name}</h3>
     </>
   );
 }
