@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import pizzaData from './data.js';
+
 // App components
 function App() {
   return (
@@ -13,10 +15,10 @@ function App() {
 }
 function Header() {
   const style = {
-    // textTransform: 'uppercase',
-    // fontSize: '48px',
-    // color: 'red',
-    // fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: '48px',
+    color: 'red',
+    fontWeight: 'bold',
   };
   return (
     <header style={style} className="header">
@@ -28,9 +30,11 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Jiang Menu</h2>
-      <Pizza name="Pizza Spinaci" imageSrc="pizzas/spinaci.jpg" />
-      <Pizza name="Pizza Margherita" imageSrc="pizzas/margherita.jpg" />
-      <Pizza name="Pizza Salamino" imageSrc="pizzas/salamino.jpg" />
+      <ul className="pizzas">
+        {pizzaData.map((pizza, index) => (
+          <Pizza key={index} {...pizza} />
+        ))}
+      </ul>
     </main>
   );
 }
@@ -42,16 +46,21 @@ function Footer() {
   return (
     <footer className="footer">
       We're currently open. {new Date().toLocaleTimeString()}
-      <h2>We're {isOpen ? 'Open' : 'Closed'}</h2>
+      <span>We're {isOpen ? 'Open' : 'Closed'}</span>
     </footer>
   );
 }
-function Pizza({ name, imageSrc }) {
+function Pizza({ name, photoName, price, ingredients, soldOut }) {
   return (
-    <>
-      <img src={imageSrc} alt={name} />
-      <h3>{name}</h3>
-    </>
+    <li className="pizza">
+      <img src={photoName} alt={name} />
+      <div>
+        <h3>{name}</h3>
+        <p>{ingredients}</p>
+        <span>{price}</span>
+        {soldOut && <span className="">Sold Out</span>}
+      </div>
+    </li>
   );
 }
 // React V18
