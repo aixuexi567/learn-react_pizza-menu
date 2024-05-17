@@ -52,20 +52,26 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen ? (
-        <div className="order">
-          <p>
-            We're open from {openHour}:00 to {closeHour}:00. Come and viste us
-            or order online!
-          </p>
-          <button className="btn">Order</button>
-        </div>
+        <Order openHour={openHour} closeHour={closeHour} />
       ) : (
         <p>Sorry, we're closed. We open at {openHour}:00</p>
       )}
     </footer>
   );
 }
+function Order({ openHour, closeHour }) {
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour}:00 to {closeHour}:00. Come and viste us or
+        order online!
+      </p>
+      <button className="btn">Order</button>
+    </div>
+  );
+}
 function Pizza({ name, photoName, price, ingredients, soldOut }) {
+  if (soldOut) return null;
   return (
     <li className="pizza">
       <img src={photoName} alt={name} />
