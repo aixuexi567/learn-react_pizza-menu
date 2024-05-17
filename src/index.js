@@ -6,11 +6,11 @@ import pizzaData from './data.js';
 // App components
 function App() {
   return (
-    <div className="container">
+    <>
       <Header />
       <Menu />
       <Footer />
-    </div>
+    </>
   );
 }
 function Header() {
@@ -33,11 +33,14 @@ function Menu() {
     <main className="menu">
       <h2>Jiang Menu</h2>
       {pizzas.length > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza, index) => (
-            <Pizza key={index} {...pizza} />
-          ))}
-        </ul>
+        <React.Fragment>
+          <p>what a pretty day! Get a Pizza with your friends</p>
+          <ul className="pizzas">
+            {pizzas.map((pizza, index) => (
+              <Pizza key={index} {...pizza} />
+            ))}
+          </ul>
+        </React.Fragment>
       ) : (
         <p>Sorry, no pizzas available</p>
       )}
