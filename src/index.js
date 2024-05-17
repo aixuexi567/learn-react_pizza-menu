@@ -30,11 +30,13 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Jiang Menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((pizza, index) => (
-          <Pizza key={index} {...pizza} />
-        ))}
-      </ul>
+      {pizzaData.length > 0 && (
+        <ul className="pizzas">
+          {pizzaData.map((pizza, index) => (
+            <Pizza key={index} {...pizza} />
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
@@ -45,8 +47,15 @@ function Footer() {
   const isOpen = hour >= openHour && hour <= closeHour;
   return (
     <footer className="footer">
-      We're currently open. {new Date().toLocaleTimeString()}
-      <span>We're {isOpen ? 'Open' : 'Closed'}</span>
+      {isOpen && (
+        <div className="order">
+          <p>
+            We're open from {openHour}:00 to {closeHour}:00. Come and viste us
+            or order online!
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
 }
